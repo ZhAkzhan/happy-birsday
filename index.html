@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Туған күн құтты болсын!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ff66b2;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px white; }
+            to { text-shadow: 0 0 20px yellow; }
+        }
+        .photo-gallery img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+        }
+        .countdown {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            opacity: 0.7;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-10vh); }
+            to { transform: translateY(100vh); }
+        }
+        .music {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Туған күн құтты болсын! 🎂</h1>
+        <p>Құрметті анашым мен қарындасым, сіздерді осы ерекше күнмен құттықтаймыз!</p>
+        
+        <div class="photo-gallery">
+            <img src="ИНТЕРНЕТТЕГІ_СУРЕТ_ССЫЛКАСЫ_1" alt="Фото 1">
+            <img src="ИНТЕРНЕТТЕГІ_СУРЕТ_ССЫЛКАСЫ_2" alt="Фото 2">
+        </div>
+        
+        <div class="countdown" id="countdown"></div>
+        
+        <div class="footer">💕 Сіздерді жақсы көреміз! 💕</div>
+        
+        <div class="music">
+            <audio controls autoplay>
+                <source src="https://example.com/happy-birthday.mp3" type="audio/mpeg">
+                Сіздің браузеріңіз аудио ойнатуды қолдамайды.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        function countdownTimer() {
+            const eventDate = new Date('2025-02-19T00:00:00').getTime();
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown').innerHTML = `Мерекеге дейін: ${days} күн ${hours} сағат ${minutes} минут ${seconds} секунд`;
+                
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById('countdown').innerHTML = "Туған күніңіз құтты болсын!";
+                }
+            }, 1000);
+        }
+        countdownTimer();
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(confetti);
+            }
+        }
+        createConfetti();
+    </script>
+</body>
+</html>
